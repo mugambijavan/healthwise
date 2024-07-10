@@ -30,12 +30,22 @@ import React from "react"
     }
 
     const RenderField = ({field,props } :{field:any ; props: CustomProps})  =>{
-        return(
-            <Input
-                type="text"
-                placeholder="Enter your name"
-            />
-        )
+        switch (props.fieldType) {
+            case FormFieldType.INPUT: 
+                return (
+                    <div className="flex rounded-md border border-dark-500 bg-dark-500 ">
+                        {props.iconSrc && (
+                            <Image src={props.iconSrc} 
+                            
+                            />
+                        )}
+                    </div>
+                )
+                break;
+        
+            default:
+                break;
+        }
     }
 
 
