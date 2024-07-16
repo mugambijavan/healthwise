@@ -12,6 +12,7 @@ import { Control } from "react-hook-form"
 import { FormFieldType } from "./forms/PatientForm"
 import { Label } from "./ui/label"
 import React from "react"
+import Image from "next/image"
 
     interface CustomProps {
         control: Control<any>,
@@ -30,15 +31,27 @@ import React from "react"
     }
 
     const RenderField = ({field,props } :{field:any ; props: CustomProps})  =>{
-        switch (props.fieldType) {
+        const {fieldType, iconSrc, iconAlt,  placeholder } = props;
+        switch (fieldType) {
             case FormFieldType.INPUT: 
                 return (
                     <div className="flex rounded-md border border-dark-500 bg-dark-500 ">
-                        {props.iconSrc && (
-                            <Image src={props.iconSrc} 
-                            
+                        {iconSrc && (
+                            <Image 
+                                src={iconSrc} 
+                                alt={iconAlt || 'Icon'} 
+                                height={24}
+                                width={24}
+                                className='ml-2'
                             />
                         )}
+                        <FormControl>
+                            <Input 
+                                {...field} 
+                                placeholder={placeholder} 
+                                className="w-full px-3 py-2 text-sm ring-offset-background ring-2 ring-dark-500 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            />
+                        </FormControl>
                     </div>
                 )
                 break;
