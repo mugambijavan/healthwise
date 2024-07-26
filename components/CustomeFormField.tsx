@@ -80,7 +80,7 @@
         return (
             <FormControl>
             <PhoneInput
-                defaultCountry="KE"
+                defaultCountry="US"
                 placeholder={props.placeholder}
                 international
                 withCountryCallingCode
